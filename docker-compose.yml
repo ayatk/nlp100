@@ -1,0 +1,6 @@
+jupyter:
+  image: nlp100
+  ports:
+    - "80:8888"
+  volumes:
+    - ".:/usr/src/app"
