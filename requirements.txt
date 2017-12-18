@@ -2,3 +2,6 @@ jupyterlab
 numpy
 matplotlib
 requests
+pymongo
+hiredis
+redis

@@ -1,6 +1,32 @@
-jupyter:
-  image: nlp100
-  ports:
-    - "80:8888"
-  volumes:
-    - ".:/usr/src/app"
+version: "3"
+services:
+  jupyter:
+    build: .
+    ports:
+      - "80:8888"
+    volumes:
+      - ".:/usr/src/app"
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:jessie
+    ports:
+      - "${MONGODB_PORT}:27017"
+    volumes:
+      - ${DATA_SAVE_PATH}/mongo:/data/db
+    networks:
+      - backend
+
+  redis:
+    image: redis:4-alpine
+    volumes:
+      - ${DATA_SAVE_PATH}/redis:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
