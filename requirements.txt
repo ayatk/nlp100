@@ -1,7 +1,13 @@
+# general
 jupyterlab
 numpy
 matplotlib
 requests
+
+# 6章
+nltk
+
+# 7章
 pymongo
 hiredis
 redis

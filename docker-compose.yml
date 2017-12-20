@@ -27,6 +27,20 @@ services:
     networks:
       - backend
 
+  mecab:
+    build: ./docker/mecab/
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+
+  corenlp:
+    build: ./docker/corenlp
+    ports:
+      - 9000:9000
+    networks:
+      - backend
+
 networks:
   backend:
     driver: "bridge"
