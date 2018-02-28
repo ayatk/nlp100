@@ -4,6 +4,9 @@ numpy
 matplotlib
 requests
 
+# 5章
+pydot
+
 # 6章
 nltk
 

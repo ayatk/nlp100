@@ -6,41 +6,19 @@ services:
       - "80:8888"
     volumes:
       - ".:/usr/src/app"
-    networks:
-      - backend
 
   mongo:
     image: mongo:jessie
-    ports:
-      - "${MONGODB_PORT}:27017"
     volumes:
       - ${DATA_SAVE_PATH}/mongo:/data/db
-    networks:
-      - backend
 
   redis:
     image: redis:4-alpine
     volumes:
       - ${DATA_SAVE_PATH}/redis:/data
-    ports:
-      - "${REDIS_PORT}:6379"
-    networks:
-      - backend
 
   mecab:
     build: ./docker/mecab/
-    ports:
-      - "5000:5000"
-    networks:
-      - backend
 
   corenlp:
     build: ./docker/corenlp
-    ports:
-      - 9000:9000
-    networks:
-      - backend
-
-networks:
-  backend:
-    driver: "bridge"
