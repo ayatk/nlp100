@@ -3,7 +3,7 @@ services:
   jupyter:
     build: .
     ports:
-      - "80:8888"
+      - "8888:8888"
     volumes:
       - ".:/usr/src/app"
 
@@ -13,7 +13,7 @@ services:
       - ${DATA_SAVE_PATH}/mongo:/data/db
 
   redis:
-    image: redis:4-alpine
+    image: redis:6-alpine
     volumes:
       - ${DATA_SAVE_PATH}/redis:/data
 

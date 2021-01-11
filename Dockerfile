@@ -1,13 +1,12 @@
-FROM python:alpine
+FROM python:3.9-alpine
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY requirements.txt /usr/src/app/
+COPY pyproject.toml poetry.lock ./
 
-RUN apk add --update --no-cache build-base graphviz \
-    && apk add --no-cache --virtual .build-deps libpng-dev freetype-dev gcc
-RUN pip install --no-cache-dir -r requirements.txt
-RUN apk del --purge .build-deps
+RUN apk add --update --no-cache build-base graphviz libressl-dev libpng-dev libjpeg-turbo-dev libffi-dev freetype-dev zeromq-dev linux-headers
+RUN pip install --no-cache-dir poetry && \
+    poetry install
 
-CMD [ "/usr/local/bin/jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
+CMD [ "poetry", "run", "jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
